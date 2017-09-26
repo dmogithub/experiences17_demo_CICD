@@ -24,7 +24,7 @@ node {
         }
     }
 
-    stage('Push image') {
+    stage('Push image to registry') {
         /* Finally, we'll push the image with two tags:
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
@@ -34,7 +34,7 @@ node {
             app.push("latest")
         }
     }
-    stage('wpapp dev env') {
+    stage('deploy to DEV') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Engie-type approach ;-) */
             
@@ -43,7 +43,7 @@ node {
     stage('Deploy approval'){
     input "Deploy to prod?"
     }
-        stage('wpapp prod env')  {
+        stage('deploy to PROD')  {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Engie-type approach ;-) */
                
