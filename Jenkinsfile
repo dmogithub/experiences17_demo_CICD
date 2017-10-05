@@ -37,11 +37,9 @@ node {
     stage('deploy to DEV') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Engie-type approach ;-) */
-        app = docker.image('experiences17.azurecr.io/engieit/wordpress')
-           docker.withRegistry('https://experiences17.azurecr.io', 'azure-registry-credentials') {
-           app.pull()
+       
            sh 'docker stack deploy --with-registry-auth  -c myapp-dev.yml devapp'
-          }
+          
         }
     stage('Deploy approval'){
     input "Deploy to prod?"
